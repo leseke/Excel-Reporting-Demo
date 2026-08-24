@@ -1,19 +1,78 @@
 # Excel Reporting Demo
 
-A reproducible proof-of-concept for turning raw monthly business data into a refreshable Excel reporting workbook.
+A client-style portfolio project showing how raw monthly business data can be turned into a repeatable, management-ready Excel reporting workbook.
 
-## What this demonstrates
+## Business problem
 
-- clean separation between raw data, calculations and dashboard output;
-- budget vs actual comparisons;
-- monthly KPI calculations;
-- variance percentages;
-- rolling 3-month averages;
-- automatic workbook generation from synthetic CSV data;
-- chart-ready Excel output;
-- automated checks for key calculations.
+A small company tracks revenue, costs and budgets in recurring monthly files. Management needs a clear view of performance without rebuilding formulas, charts and summaries by hand every month.
+
+This demo automates that reporting flow from a simple CSV source into a structured Excel workbook with KPIs, budget comparisons, trends and reusable analysis sheets.
+
+## What the generated workbook contains
+
+### Dashboard
+
+- total revenue;
+- total cost;
+- net profit;
+- profit margin;
+- revenue vs budget variance;
+- latest revenue growth;
+- revenue vs budget chart;
+- monthly net profit chart;
+- revenue growth trend;
+- rolling 3-month profit trend.
+
+### Analysis
+
+A structured monthly table containing:
+
+- revenue and budget revenue;
+- revenue variance and variance %;
+- cost and budget cost;
+- cost variance;
+- net profit;
+- profit margin;
+- month-over-month revenue growth;
+- rolling 3-month profit.
+
+### Raw Data
+
+The original synthetic source data is preserved in a clean Excel table so the reporting pipeline remains auditable and easy to adapt.
+
+## Demo results
+
+The included 2026 synthetic dataset contains 12 reporting periods and produces the following annual summary:
+
+| KPI | Result |
+| --- | ---: |
+| Revenue | €267,600 |
+| Cost | €151,600 |
+| Net profit | €116,000 |
+| Profit margin | 43.3% |
+| Revenue vs budget | +€11,100 |
+
+## How it works
+
+```text
+monthly_finance.csv
+        ↓
+Python validation & calculations
+        ↓
+Raw Data sheet
+        ↓
+Analysis sheet
+        ↓
+Management Dashboard
+        ↓
+business_report.xlsx
+```
+
+The workbook is generated with Python and `openpyxl`; no manual copy/paste is required to rebuild the report.
 
 ## Quick start
+
+Requirements: Python 3.12+.
 
 ```bash
 python -m pip install -r requirements.txt
@@ -21,26 +80,47 @@ python build_report.py
 pytest -q
 ```
 
-The script creates `output/business_report.xlsx` from `data/monthly_finance.csv`.
+The script creates:
 
-## Workbook structure
+```text
+output/business_report.xlsx
+```
 
-- **Raw Data** — source rows kept in tabular form.
-- **Analysis** — monthly revenue, cost, profit, budget variance and rolling metrics.
-- **Dashboard** — KPI summary and charts generated from the analysis sheet.
+## Automated validation
 
-## Example use cases
+The test suite verifies:
 
-- recurring management reporting;
-- budget vs actual tracking;
-- monthly sales or finance dashboards;
-- replacing repeated copy/paste reporting steps;
-- adapting an existing workbook into a repeatable process.
+- the full 12-month source dataset;
+- core profit and variance calculations;
+- annual summary totals;
+- workbook generation;
+- expected workbook sheets;
+- KPI values written to the dashboard;
+- chart generation.
 
-## Scope and limitations
+GitHub Actions runs the test suite automatically on pushes and pull requests.
 
-This repository uses synthetic data and demonstrates the engineering pattern, not accounting advice. A client project would adapt formulas, source columns, business rules and refresh logic to the real workbook and reporting requirements.
+## Skills demonstrated
 
-## Author
+`Excel Reporting` · `Python` · `openpyxl` · `Data Processing` · `KPI Dashboards` · `Budget vs Actual` · `Automation` · `Automated Testing` · `GitHub Actions`
 
-Ylan Bitang — automation and data tools.
+## Typical client adaptations
+
+This pattern can be adapted to:
+
+- recurring sales reporting;
+- budget vs actual dashboards;
+- expense and profitability reporting;
+- inventory or operational KPI reports;
+- multiple CSV/Excel inputs;
+- existing company workbook templates;
+- custom formulas, categories and business rules;
+- scheduled or one-click report generation.
+
+## Scope
+
+All data in this repository is synthetic. The project demonstrates a reporting and automation pattern, not accounting or financial advice.
+
+---
+
+**Have a repetitive Excel reporting process?** A client version can be adapted to your existing files, KPIs and reporting workflow so the same report can be rebuilt consistently from fresh data.
