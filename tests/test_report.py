@@ -39,7 +39,7 @@ def test_workbook_is_generated_with_expected_sheets(tmp_path: Path):
 
     workbook = load_workbook(path)
     assert workbook.sheetnames == ["START HERE", "Raw Data", "Analysis", "Dashboard", "Data Quality"]
-    assert workbook.active.title == "Dashboard"
+    assert workbook.active.title == "START HERE"
 
 
 def test_dashboard_contains_kpis_and_charts(tmp_path: Path):
