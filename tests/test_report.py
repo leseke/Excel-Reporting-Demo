@@ -38,7 +38,7 @@ def test_workbook_is_generated_with_expected_sheets(tmp_path: Path):
     assert len(metrics) == 12
 
     workbook = load_workbook(path)
-    assert workbook.sheetnames == ["Raw Data", "Analysis", "Dashboard"]
+    assert workbook.sheetnames == ["START HERE", "Raw Data", "Analysis", "Dashboard", "Data Quality"]
     assert workbook.active.title == "Dashboard"
 
 
